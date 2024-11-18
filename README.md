@@ -40,6 +40,20 @@ You can either load our VM image to use the artifact directly, or set it up loca
 
 Please follow the instructions in `/source/README.md` for installing Respector locally on your host machine.
 
+### Use the Dockerfile
+
+To setup the enviroment in Docker, follow these steps:
+
+1. Open terminal in the directory of the Dockerfile.
+2. Run the following command to build the image. This will also compile Respector inside the image and may take some time (~15 min) to complete.
+    ```bash
+    docker build -t {environment-name} .
+    ```
+3. Run the Docker container with the following command:
+    ```bash
+    docker run -it {environment-name}
+    ```
+
 ### Use the VM
 
 Note: The virtual machine was created and tested using VirtualBox version 6.1 on Ubuntu 20.04. Make sure you have atleast 40 GB of free storage to download and execute the virtual machine.
