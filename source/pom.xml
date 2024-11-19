@@ -48,7 +48,7 @@
       <artifactId>z3</artifactId>
       <version>4.12.0.0</version>
       <scope>system</scope>
-      <systemPath>${basedir}/lib/com.microsoft.z3.jar</systemPath>
+      <systemPath>${env.Z3_HOME}/build/com.microsoft.z3.jar</systemPath>
     </dependency> 
 
     <dependency>
