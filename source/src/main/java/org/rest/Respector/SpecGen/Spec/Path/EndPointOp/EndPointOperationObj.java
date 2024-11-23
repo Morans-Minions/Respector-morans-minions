@@ -21,9 +21,23 @@ import com.google.common.collect.Lists;
 import com.google.gson.JsonElement;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.io.OutputStream;
+import java.io.*;
+import java.net.*;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonArray;
+import io.github.cdimascio.dotenv.Dotenv;
+
 public class EndPointOperationObj {
   public transient String path;
   public transient String HttpOp;
+  public String summary;
   // public transient SpecObj enclosingSpec;
   public transient String componentParentPath;
   // public transient boolean onlyInvalid;
@@ -67,6 +81,7 @@ public class EndPointOperationObj {
     this.xConstraints=rhs.xConstraints;
     this.rawValid=rhs.rawValid;
     this.rawInvalid=rhs.rawInvalid;
+    this.summary = openAISummary();
   }
 
   public EndPointOperationObj(String path, String httpOp, PathItemObj parentPathItem, ArrayList<ParameterObj> parameters,
@@ -81,6 +96,7 @@ public class EndPointOperationObj {
     this.xConstraints = xConstraints;
     this.rawValid = rawValid;
     this.rawInvalid = rawInvalid;
+    this.summary = openAISummary();
   }
 
   public EndPointOperationObj(String path, String HttpOp, PathItemObj parentPathItem, String operationId) {
@@ -92,10 +108,65 @@ public class EndPointOperationObj {
 
     this.parameters=new ArrayList<>();
     this.responses=new TreeMap<>();
+    this.summary = openAISummary();
 
     // addResponse(new ResponseObj("200"));
     addResponse(new ResponseObj("default", "others"));
   }
+
+  public String openAISummary() {
+    try {
+      Dotenv dotenv = Dotenv.load();
+      String apiKey = dotenv.get("API_KEY");
+      URL url = new URL("https://api.openai.com/v1/chat/completions");
+      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+      connection.setRequestMethod("POST");
+      connection.setRequestProperty("Content-Type", "application/json");
+      connection.setRequestProperty("Authorization", "Bearer " + apiKey);
+      connection.setDoOutput(true);
+
+      JsonObject jsp = new JsonObject();
+      jsp.addProperty("model", "gpt-4-turbo");
+
+      JsonArray messagesArray = new JsonArray();
+      JsonObject userMessage = new JsonObject();
+      userMessage.addProperty("role", "user");
+      userMessage.addProperty("content", "Generate me a short and succinct summary of what an endpoint with the following parameters does. Write it in plain english for the average developer. Write it in a way that could be posted to public documentation forums, as this is the purpose of generating this summary. Respond as an experienced developer. " +
+      "Path: " + this.path + ", " +
+      "Operation ID: " + this.operationId + ", " +
+      "HTTP Operation: " + this.HttpOp + ", " +
+      "Parameters: " + this.parameters.toString() + ", " +
+      "Responses: " + this.responses.toString() + ", " +
+      "Request Body: " + (this.requestBody != null ? this.requestBody.toString() : "null") + ", " +
+      "X Constraints: " + (this.xConstraints != null ? this.xConstraints.toString() : "null") + ", " +
+      "Raw Valid: " + (this.rawValid != null ? this.rawValid.toString() : "null") + ", " +
+      "Raw Invalid: " + (this.rawInvalid != null ? this.rawInvalid.toString() : "null"));
+
+      messagesArray.add(userMessage);
+      jsp.add("messages", messagesArray);
+
+      OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
+      wr.write(jsp.toString());
+      wr.flush();
+
+      BufferedReader rd = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+      String line;
+      StringBuffer response = new StringBuffer();
+      while ((line = rd.readLine()) != null) {
+        response.append(line);
+        response.append('\r');
+      }
+      wr.close();
+      rd.close();
+
+      JsonObject jsonResponse = com.google.gson.JsonParser.parseString(response.toString()).getAsJsonObject();
+      return jsonResponse.getAsJsonArray("choices").get(0).getAsJsonObject().get("message").getAsJsonObject().get("content").getAsString();
+        } catch (IOException e) {
+      e.printStackTrace();
+      return "Error";
+        }
+      }
 
   public RequestBodyObj getRequestBody() {
     if(requestBody==null){
