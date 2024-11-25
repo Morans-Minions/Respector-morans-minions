@@ -36,6 +36,8 @@ Additionally, we also created a VirtualBox VM image of a working environment of 
 
 You can either load our VM image to use the artifact directly, or set it up locally. We recommend the former.
 
+OpenAI API key will need to be included to generate endpoint summaries. Store in a .env file in the root directory.
+
 ### Install Locally
 
 Please follow the instructions in `/source/README.md` for installing Respector locally on your host machine.

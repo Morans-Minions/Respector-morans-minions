@@ -1,0 +1,1067 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "info": {
+    "title": "REST API",
+    "version": "",
+    "description": "REST API"
+  },
+  "paths": {
+    "/api/account/signup": {
+      "post": {
+        "summary": "This API endpoint (`POST /api/account/signup`) is designed to handle the signup process for new users. Despite being identified here, specific details such as required parameters for the request body, constraints, and expected responses are not provided, suggesting further information may be needed to fully implement or utilize this endpoint. When called, this endpoint should initiate the signup process, but the exact data it expects and the responses it should deliver upon execution are not specified in the provided documentation. This may often mean the endpoint is under development or its documentation is incomplete. As it stands, developers will require additional details to effectively integrate with this endpoint.",
+        "description": "",
+        "operationId": "em1",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.urcodebin.api.dto.UserAccountDTO",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "username": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 3
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1api~1account~1signup/post"
+        }
+      }
+    },
+    "/api/account/{account_id}": {
+      "get": {
+        "summary": "This endpoint, specified by `/api/account/{account_id}`, is designed to retrieve information about a specific account. It uses a GET HTTP method, indicating that it is used for retrieving data without affecting the server's state. The `{account_id}` in the path is a placeholder that should be replaced with the unique identifier of the account you want to inquire about.\n\nThere are no parameters required besides the account ID specified in the URL. The endpoint doesn't need a request body, and currently, there are no additional constraints or validations provided in the description.\n\nThe endpoint's responses are not detailed here, so you would need to refer to additional documentation or the implementation itself to understand the expected output or potential errors.\n\nThis operation is useful for developers who need to fetch account-specific details while developing features that require account identification and validation, making it an essential part of user management or account services.",
+        "description": "",
+        "operationId": "em0",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.urcodebin.api.dto.UserAccountDTO",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "username": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1api~1account~1{account_id}/get"
+        }
+      }
+    },
+    "/api/paste": {
+      "post": {
+        "summary": "### Endpoint Summary: `/api/paste`\n\n**Operation ID:** em5  \n**HTTP Method:** POST  \n**Parameters:** None  \n**Request Body:** None  \n**Responses:** Not specified  \n\n**Description:**\nThe `/api/paste` endpoint, identifiable by the operation ID `em5`, facilitates a POST request, though its specific function is unclear due to lack of detailed parameters, request body, constraints, or defined responses. Typically, endpoints with `/paste` suggest functionality related to submitting data (akin to pasting), but without explicit input or output details, the precise behavior remains undefined here.\n\n**Usage Note:**\nFor developers aiming to utilize this endpoint, additional specification concerning expected request formats and potential responses is necessary to integrate effectively into applications. Ensure to check back for updates or contact the API maintainer for more detailed documentation on this endpoint.",
+        "description": "",
+        "operationId": "em5",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.urcodebin.api.dto.CodePasteDTO",
+                  "properties": {
+                    "pasteId": {
+                      "type": "object",
+                      "title": "java.util.UUID",
+                      "properties": {
+                        "mostSigBits": {
+                          "type": "integer"
+                        },
+                        "leastSigBits": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "sourceCode": {
+                      "type": "string"
+                    },
+                    "pasteTitle": {
+                      "type": "string"
+                    },
+                    "pasteSyntax": {
+                      "type": "object",
+                      "title": "com.urcodebin.api.enums.PasteSyntax",
+                      "properties": {
+                        "value": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "pasteExpirationDate": {
+                      "type": "object",
+                      "title": "java.time.LocalDateTime",
+                      "properties": {
+                        "date": {
+                          "type": "object",
+                          "title": "java.time.LocalDate",
+                          "properties": {
+                            "year": {
+                              "type": "integer"
+                            },
+                            "month": {
+                              "type": "integer"
+                            },
+                            "day": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "time": {
+                          "type": "object",
+                          "title": "java.time.LocalTime",
+                          "properties": {
+                            "hour": {
+                              "type": "integer"
+                            },
+                            "minute": {
+                              "type": "integer"
+                            },
+                            "second": {
+                              "type": "integer"
+                            },
+                            "nano": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "pasteVisibility": {
+                      "type": "object",
+                      "title": "com.urcodebin.api.enums.PasteVisibility",
+                      "properties": {
+                        "value": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "pasteExpiration": {
+                    "type": "string"
+                  },
+                  "pasteSyntax": {
+                    "type": "string"
+                  },
+                  "pasteTitle": {
+                    "type": "string"
+                  },
+                  "pasteVisibility": {
+                    "type": "string"
+                  },
+                  "sourceCode": {
+                    "type": "string"
+                  }
+                },
+                "maxProperties": 5
+              }
+            }
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1api~1paste/post"
+        }
+      }
+    },
+    "/api/paste/public": {
+      "get": {
+        "summary": "The endpoint `/api/paste/public` with operation ID `em4` and using the HTTP `GET` method is designed to retrieve public pastes. This endpoint does not require any parameters and does not accept a request body, making it straightforward to use. The responses object is currently empty in the provided details, indicating that specific response information (like the format or potential status codes) isn't available or hasn't been detailed yet. Essentially, this endpoint is used to access publicly shared paste data from the server. Ideal for developers looking to fetch general, non-user-specific data that has been marked as public.",
+        "description": "",
+        "operationId": "em4",
+        "parameters": [
+          {
+            "name": "paste_title",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "paste_syntax",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 5,
+              "maximum": 20,
+              "exclusiveMaximum": false,
+              "minimum": 1,
+              "exclusiveMinimum": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1api~1paste~1public/get"
+        }
+      }
+    },
+    "/api/paste/{paste_id}": {
+      "delete": {
+        "summary": "**Endpoint Summary: `/api/paste/{paste_id}`**\n\n**Operation ID:** em3  \n**HTTP Method:** DELETE\n\nThis endpoint is designed to allow developers to delete a specific paste entry from the system. The `{paste_id}` in the URL path specifies the unique identifier of the paste that you wish to delete. When a DELETE request is sent to this endpoint, the specified paste is completely removed from the system's storage.\n\n**Parameters:**  \n- `paste_id`: A unique identifier for the paste, included in the URL path. This is required to specify which paste is to be deleted.\n\n**Request Body:**  \n- No request body is needed for this operation.\n\n**Responses:**  \n- The endpoint does not specify any response details, typically you might expect:\n  - `204 No Content` on successful deletion.\n  - `404 Not Found` if no paste with the specified `paste_id` exists.\n  - `403 Forbidden` if the user is not authorized to delete the paste.\n\nThis endpoint does not have any specified constraints or special validations according to the provided details, and operates directly based on the `paste_id` provided in the API's path.\n\nThis is a straightforward operation primarily meant for removing user data (paste entries) from the system efficiently and is typically protected to ensure only authorized deletions occur. Please ensure proper authorization checks are in place to prevent unwanted data loss.",
+        "description": "",
+        "operationId": "em3",
+        "parameters": [
+          {
+            "name": "paste_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "NO_CONTENT"
+          },
+          "500": {
+            "description": "INTERNAL_SERVER_ERROR"
+          },
+          "default": {
+            "description": "others"
+          }
+        },
+        "x-endpoint-constraints": {
+          "$ref": "#/components/x-endpoint-constraints/~1api~1paste~1{paste_id}/delete"
+        }
+      },
+      "get": {
+        "summary": "This API endpoint retrieves the details of a specific paste item identified by its `paste_id`. By sending a GET request to `/api/paste/{paste_id}`, the endpoint returns data related to that particular paste, such as its content and metadata. There are no parameters required beyond the `paste_id` included in the URL path. The absence of a request body and additional constraints means that calling this endpoint is straightforward: simply provide the unique identifier for the paste you wish to retrieve, and the endpoint will respond with the relevant data if available. This endpoint is useful for fetching individual paste entries efficiently when the unique identifier is known.",
+        "description": "",
+        "operationId": "em2",
+        "parameters": [
+          {
+            "name": "paste_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "com.urcodebin.api.dto.CodePasteDTO",
+                  "properties": {
+                    "pasteId": {
+                      "type": "object",
+                      "title": "java.util.UUID",
+                      "properties": {
+                        "mostSigBits": {
+                          "type": "integer"
+                        },
+                        "leastSigBits": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "sourceCode": {
+                      "type": "string"
+                    },
+                    "pasteTitle": {
+                      "type": "string"
+                    },
+                    "pasteSyntax": {
+                      "type": "object",
+                      "title": "com.urcodebin.api.enums.PasteSyntax",
+                      "properties": {
+                        "value": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "pasteExpirationDate": {
+                      "type": "object",
+                      "title": "java.time.LocalDateTime",
+                      "properties": {
+                        "date": {
+                          "type": "object",
+                          "title": "java.time.LocalDate",
+                          "properties": {
+                            "year": {
+                              "type": "integer"
+                            },
+                            "month": {
+                              "type": "integer"
+                            },
+                            "day": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "time": {
+                          "type": "object",
+                          "title": "java.time.LocalTime",
+                          "properties": {
+                            "hour": {
+                              "type": "integer"
+                            },
+                            "minute": {
+                              "type": "integer"
+                            },
+                            "second": {
+                              "type": "integer"
+                            },
+                            "nano": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "pasteVisibility": {
+                      "type": "object",
+                      "title": "com.urcodebin.api.enums.PasteVisibility",
+                      "properties": {
+                        "value": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "others"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "x-endpoint-constraints": {
+      "/api/account/signup": {
+        "post": {
+          "valid-path-conditions": [
+            "( this.<com.urcodebin.api.services.UserAccountServiceImpl: com.urcodebin.api.repository.UserAccountRepository userAccountRepository>.<com.urcodebin.api.repository.UserAccountRepository: boolean existsByEmail(java.lang.String)>({non_EPP#0}.<com.urcodebin.api.controllers.requestbody.SignupRequestBody: java.lang.String getEmail()>()) == 0 )",
+            "( this.<com.urcodebin.api.services.UserAccountServiceImpl: com.urcodebin.api.repository.UserAccountRepository userAccountRepository>.<com.urcodebin.api.repository.UserAccountRepository: boolean existsByUsername(java.lang.String)>({non_EPP#0}.<com.urcodebin.api.controllers.requestbody.SignupRequestBody: java.lang.String getUsername()>()) == 0 )"
+          ]
+        }
+      },
+      "/api/account/{account_id}": {
+        "get": {
+          "valid-path-conditions": [
+            "( this.<com.urcodebin.api.services.UserAccountServiceImpl: com.urcodebin.api.repository.UserAccountRepository userAccountRepository>.<com.urcodebin.api.repository.UserAccountRepository: java.util.Optional findById(java.lang.Object)>({account_id}).<java.util.Optional: boolean isPresent()>() != 0 )"
+          ]
+        }
+      },
+      "/api/paste": {
+        "post": {
+          "global-reads": {
+            "g15": {
+              "name": "UTC",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g15"
+              }
+            }
+          }
+        }
+      },
+      "/api/paste/public": {
+        "get": {
+          "global-reads": {
+            "g0": {
+              "name": "JAVASCRIPT",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "SWIFT",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g2": {
+              "name": "LUA",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            },
+            "g3": {
+              "name": "MYSQL",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "Python",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "GO",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            },
+            "g6": {
+              "name": "PHP",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g6"
+              }
+            },
+            "g7": {
+              "name": "NONE",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g7"
+              }
+            },
+            "g8": {
+              "name": "CPLUSPLUS",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g8"
+              }
+            },
+            "g9": {
+              "name": "POSTGRESQL",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g9"
+              }
+            },
+            "g10": {
+              "name": "CLANG",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g10"
+              }
+            },
+            "g11": {
+              "name": "RUBY",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g11"
+              }
+            },
+            "g12": {
+              "name": "CSHARP",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g12"
+              }
+            },
+            "g13": {
+              "name": "JAVA",
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g13"
+              }
+            }
+          },
+          "global-writes": {
+            "g0": {
+              "name": "JAVASCRIPT",
+              "assigned-values": [
+                "new com.urcodebin.api.enums.PasteSyntax(\"JAVASCRIPT\", 4, \"JavaScript\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g0"
+              }
+            },
+            "g1": {
+              "name": "SWIFT",
+              "assigned-values": [
+                "new com.urcodebin.api.enums.PasteSyntax(\"SWIFT\", 9, \"Swift\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g1"
+              }
+            },
+            "g2": {
+              "name": "LUA",
+              "assigned-values": [
+                "new com.urcodebin.api.enums.PasteSyntax(\"LUA\", 10, \"Lua\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g2"
+              }
+            },
+            "g3": {
+              "name": "MYSQL",
+              "assigned-values": [
+                "new com.urcodebin.api.enums.PasteSyntax(\"MYSQL\", 12, \"MySQL\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g3"
+              }
+            },
+            "g4": {
+              "name": "Python",
+              "assigned-values": [
+                "new com.urcodebin.api.enums.PasteSyntax(\"Python\", 3, \"Python\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g4"
+              }
+            },
+            "g5": {
+              "name": "GO",
+              "assigned-values": [
+                "new com.urcodebin.api.enums.PasteSyntax(\"GO\", 5, \"Go\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g5"
+              }
+            },
+            "g6": {
+              "name": "PHP",
+              "assigned-values": [
+                "new com.urcodebin.api.enums.PasteSyntax(\"PHP\", 8, \"PHP\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g6"
+              }
+            },
+            "g7": {
+              "name": "NONE",
+              "assigned-values": [
+                "new com.urcodebin.api.enums.PasteSyntax(\"NONE\", 0, \"None\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g7"
+              }
+            },
+            "g8": {
+              "name": "CPLUSPLUS",
+              "assigned-values": [
+                "new com.urcodebin.api.enums.PasteSyntax(\"CPLUSPLUS\", 7, \"C++\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g8"
+              }
+            },
+            "g9": {
+              "name": "POSTGRESQL",
+              "assigned-values": [
+                "new com.urcodebin.api.enums.PasteSyntax(\"POSTGRESQL\", 13, \"PostgreSQL\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g9"
+              }
+            },
+            "g10": {
+              "name": "CLANG",
+              "assigned-values": [
+                "new com.urcodebin.api.enums.PasteSyntax(\"CLANG\", 6, \"C\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g10"
+              }
+            },
+            "g11": {
+              "name": "RUBY",
+              "assigned-values": [
+                "new com.urcodebin.api.enums.PasteSyntax(\"RUBY\", 11, \"Ruby\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g11"
+              }
+            },
+            "g12": {
+              "name": "CSHARP",
+              "assigned-values": [
+                "new com.urcodebin.api.enums.PasteSyntax(\"CSHARP\", 2, \"C#\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g12"
+              }
+            },
+            "g13": {
+              "name": "JAVA",
+              "assigned-values": [
+                "new com.urcodebin.api.enums.PasteSyntax(\"JAVA\", 1, \"Java\")"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g13"
+              }
+            },
+            "g14": {
+              "name": "$VALUES",
+              "assigned-values": [
+                "newarray (com.urcodebin.api.enums.PasteSyntax)[14]"
+              ],
+              "location-details": {
+                "$ref": "#/components/x-global-variables-info/g14"
+              }
+            }
+          }
+        }
+      },
+      "/api/paste/{paste_id}": {
+        "delete": {
+          "valid-path-conditions": [
+            "( this.<com.urcodebin.api.services.CodePasteServiceImpl: com.urcodebin.api.repository.CodePasteRepository codePasteRepository>.<com.urcodebin.api.repository.CodePasteRepository: boolean existsById(java.lang.Object)>(staticinvoke <java.util.UUID: java.util.UUID fromString(java.lang.String)>({paste_id})) != 0 )"
+          ]
+        }
+      }
+    },
+    "x-endpoint-interdependence": {
+      "g0": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g0"
+        },
+        "read-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        },
+        "written-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        }
+      },
+      "g1": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g1"
+        },
+        "read-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        },
+        "written-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        }
+      },
+      "g2": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g2"
+        },
+        "read-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        },
+        "written-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        }
+      },
+      "g3": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g3"
+        },
+        "read-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        },
+        "written-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        }
+      },
+      "g4": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g4"
+        },
+        "read-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        },
+        "written-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        }
+      },
+      "g5": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g5"
+        },
+        "read-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        },
+        "written-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        }
+      },
+      "g6": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g6"
+        },
+        "read-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        },
+        "written-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        }
+      },
+      "g7": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g7"
+        },
+        "read-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        },
+        "written-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        }
+      },
+      "g8": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g8"
+        },
+        "read-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        },
+        "written-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        }
+      },
+      "g9": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g9"
+        },
+        "read-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        },
+        "written-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        }
+      },
+      "g10": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g10"
+        },
+        "read-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        },
+        "written-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        }
+      },
+      "g11": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g11"
+        },
+        "read-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        },
+        "written-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        }
+      },
+      "g12": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g12"
+        },
+        "read-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        },
+        "written-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        }
+      },
+      "g13": {
+        "location-details": {
+          "$ref": "#/components/x-global-variables-info/g13"
+        },
+        "read-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        },
+        "written-by": {
+          "em4": {
+            "$ref": "#/paths/~1api~1paste~1public/get"
+          }
+        }
+      }
+    },
+    "x-global-variables-info": {
+      "g0": {
+        "name": "JAVASCRIPT",
+        "id": "g0",
+        "defining-class": "com.urcodebin.api.enums.PasteSyntax",
+        "locations-of-static-assignments": [
+          "line 8, com.urcodebin.api.enums.PasteSyntax"
+        ]
+      },
+      "g1": {
+        "name": "SWIFT",
+        "id": "g1",
+        "defining-class": "com.urcodebin.api.enums.PasteSyntax",
+        "locations-of-static-assignments": [
+          "line 13, com.urcodebin.api.enums.PasteSyntax"
+        ]
+      },
+      "g2": {
+        "name": "LUA",
+        "id": "g2",
+        "defining-class": "com.urcodebin.api.enums.PasteSyntax",
+        "locations-of-static-assignments": [
+          "line 14, com.urcodebin.api.enums.PasteSyntax"
+        ]
+      },
+      "g3": {
+        "name": "MYSQL",
+        "id": "g3",
+        "defining-class": "com.urcodebin.api.enums.PasteSyntax",
+        "locations-of-static-assignments": [
+          "line 16, com.urcodebin.api.enums.PasteSyntax"
+        ]
+      },
+      "g4": {
+        "name": "Python",
+        "id": "g4",
+        "defining-class": "com.urcodebin.api.enums.PasteSyntax",
+        "locations-of-static-assignments": [
+          "line 7, com.urcodebin.api.enums.PasteSyntax"
+        ]
+      },
+      "g5": {
+        "name": "GO",
+        "id": "g5",
+        "defining-class": "com.urcodebin.api.enums.PasteSyntax",
+        "locations-of-static-assignments": [
+          "line 9, com.urcodebin.api.enums.PasteSyntax"
+        ]
+      },
+      "g6": {
+        "name": "PHP",
+        "id": "g6",
+        "defining-class": "com.urcodebin.api.enums.PasteSyntax",
+        "locations-of-static-assignments": [
+          "line 12, com.urcodebin.api.enums.PasteSyntax"
+        ]
+      },
+      "g7": {
+        "name": "NONE",
+        "id": "g7",
+        "defining-class": "com.urcodebin.api.enums.PasteSyntax",
+        "locations-of-static-assignments": [
+          "line 4, com.urcodebin.api.enums.PasteSyntax"
+        ]
+      },
+      "g8": {
+        "name": "CPLUSPLUS",
+        "id": "g8",
+        "defining-class": "com.urcodebin.api.enums.PasteSyntax",
+        "locations-of-static-assignments": [
+          "line 11, com.urcodebin.api.enums.PasteSyntax"
+        ]
+      },
+      "g9": {
+        "name": "POSTGRESQL",
+        "id": "g9",
+        "defining-class": "com.urcodebin.api.enums.PasteSyntax",
+        "locations-of-static-assignments": [
+          "line 17, com.urcodebin.api.enums.PasteSyntax"
+        ]
+      },
+      "g10": {
+        "name": "CLANG",
+        "id": "g10",
+        "defining-class": "com.urcodebin.api.enums.PasteSyntax",
+        "locations-of-static-assignments": [
+          "line 10, com.urcodebin.api.enums.PasteSyntax"
+        ]
+      },
+      "g11": {
+        "name": "RUBY",
+        "id": "g11",
+        "defining-class": "com.urcodebin.api.enums.PasteSyntax",
+        "locations-of-static-assignments": [
+          "line 15, com.urcodebin.api.enums.PasteSyntax"
+        ]
+      },
+      "g12": {
+        "name": "CSHARP",
+        "id": "g12",
+        "defining-class": "com.urcodebin.api.enums.PasteSyntax",
+        "locations-of-static-assignments": [
+          "line 6, com.urcodebin.api.enums.PasteSyntax"
+        ]
+      },
+      "g13": {
+        "name": "JAVA",
+        "id": "g13",
+        "defining-class": "com.urcodebin.api.enums.PasteSyntax",
+        "locations-of-static-assignments": [
+          "line 5, com.urcodebin.api.enums.PasteSyntax"
+        ]
+      },
+      "g14": {
+        "name": "$VALUES",
+        "id": "g14",
+        "defining-class": "com.urcodebin.api.enums.PasteSyntax",
+        "locations-of-static-assignments": [
+          "line 3, com.urcodebin.api.enums.PasteSyntax"
+        ]
+      },
+      "g15": {
+        "name": "UTC",
+        "id": "g15",
+        "defining-class": "java.time.ZoneOffset"
+      }
+    }
+  }
+}
