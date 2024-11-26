@@ -108,9 +108,18 @@ This will take around 15 seconds to finish. While executing, Respector will prin
 
 ![example use](/documentation/example_use.png)
 
-Once it is done, you can find the generated OAS at `./generated/restcountries.json`.
+Once it is done, you can find the generated OAS at `./generated/restcountries.json`. 
 
 ![restcountries OAS](/documentation/restcountries_OAS.png)
+
+You will also find generated md files at `./generated/restcountries.md`
+
+Markdown Preview
+![restcountries_md](/documentation/generated_md_preview.png)
+
+Markdown Text
+![restcountries_md](/documentation/generated_md_code.png)
+
 
 ### Replicate the results
 
@@ -206,6 +215,8 @@ bash ./scripts/run_respector.sh ../dataset/senzing-api-server/target/classes ./g
 ```
 
 It will take around 30 minutes to finish. Once it is done, you can find the generated OAS at `./generated/senzing.json`.
+
+You will also find a generated markdown file at `./generated/senzing.md`
 
 The endpoint method we use in the motivating example in the paper, `GET /entity-networks` can be found on line 1549:
 
