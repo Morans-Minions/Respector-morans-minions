@@ -109,7 +109,7 @@ public class MarkdownConverter {
         // Summary
         if (operation.has("summary")) {
             markdown.append("### Summary:\n");
-            if (operation.get("summary").getAsString() == "") {
+            if (operation.get("summary").getAsString() != "") {
                 markdown.append(operation.get("summary").getAsString()).append("\n\n");
             } else {
                 markdown.append("No Summary\n");
@@ -119,7 +119,7 @@ public class MarkdownConverter {
         // Description
         if (operation.has("description")) {
             markdown.append("### Description:\n");
-            if (operation.get("description").getAsString() == "") {
+            if (operation.get("description").getAsString() != "") {
                 markdown.append(operation.get("description").getAsString()).append("\n\n");
             } else {
                 markdown.append("No Description\n");
