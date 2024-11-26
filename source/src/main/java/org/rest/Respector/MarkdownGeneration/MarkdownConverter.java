@@ -106,6 +106,16 @@ public class MarkdownConverter {
     }
 
     private void processOperation(StringBuilder markdown, JsonObject operation) {
+        // Summary
+        if (operation.has("summary")) {
+            markdown.append("### Summary:\n");
+            if (operation.get("summary").getAsString() == "") {
+                markdown.append(operation.get("summary").getAsString()).append("\n\n");
+            } else {
+                markdown.append("No Summary\n");
+            }
+        }
+
         // Description
         if (operation.has("description")) {
             markdown.append("### Description:\n");
