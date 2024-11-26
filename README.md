@@ -106,9 +106,14 @@ This will take around 15 seconds to finish. While executing, Respector will prin
 
 ![example use](/documentation/example_use.png)
 
-Once it is done, you can find the generated OAS at `./generated/restcountries.json`. You will also find generated md files at `./generated/restcountries.md`
+Once it is done, you can find the generated OAS at `./generated/restcountries.json`. 
 
 ![restcountries OAS](/documentation/restcountries_OAS.png)
+
+You will also find generated md files at `./generated/restcountries.md`
+
+![restcountries_md](/documentation/generated_md_preview.png)
+
 
 ### Replicate the results
 
