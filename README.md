@@ -112,7 +112,11 @@ Once it is done, you can find the generated OAS at `./generated/restcountries.js
 
 You will also find generated md files at `./generated/restcountries.md`
 
+Markdown Preview
 ![restcountries_md](/documentation/generated_md_preview.png)
+
+Markdown Text
+![restcountries_md](/documentation/generated_md_code.png)
 
 
 ### Replicate the results
